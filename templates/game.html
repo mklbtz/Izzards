@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block head %}
+<script type="text/javascript">
+    var GAME_CODE = "{{ code }}";
+    var PLAYER_NUM = {{ playerNum }};
+
+    // resizes table cells so that height and width are in sync
+    window.onresize = function() {
+        var cw = $('.board-space').width();
+        $('.board-space').css({'height':cw+'px'});
+    }
+    window.onload = window.onresize;
+</script>
+<script src="/static/game.js"></script>
+{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+<div class="col-md-1"></div>
+<div class="col-lg-3 col-md-4 col-sm-5">
+    <div id="game-info-panel" class="panel panel-warning">
+        <div class="panel-heading" id="game_not_yet_begun">Invite friends to start the game! (Game&nbsp;code:&nbsp;{{code}})</div>
+        <div class="panel-heading" id="your_turn" style="display:none" >It's your turn. Make a move!</div>
+        <div class="panel-heading" id="not_your_turn" style="display:none" >Waiting on other players to go.</div>
+        <div class="panel-heading" id="game_complete" style="display:none" >The game is over!</div>
+        <div class="panel-heading" id="game_info_title" style="display:none" >Game Info</div>
+        <ul class="list-group" id="playerList"> 
+            <!-- List populated by game.js -->
+        </ul>
+    </div>
+</div>
+<div class="col-md-5 col-sm-6">
+    <table class="table">
+    {% for row in state %}
+        {% set outerIndex = loop.index0 %}
+        <tr>
+            {% for mark in row %}
+            <td class="board-space" data-row="{{ outerIndex }}" data-column="{{ loop.index0 }}">
+            {% if mark == -1 %}
+                &emsp;
+            {% elif mark == 0 %}
+                X
+            {% elif mark == 1 %}
+                O
+            {% elif mark == 2 %}
+                Z
+            {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+<div class="col-md-1"></div>
+{% endblock %}

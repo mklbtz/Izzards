@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>Naughts, Crosses, and Izzards (Oh, My!)</title>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body><div class="container">
+    <div class="navbar navbar-default navbar-fixed-top navbar-themed" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-brand-themed" href="/">Naughts, Crosses, and Izzards (Oh, My!)</a>
+        </div>
+        {% block nav %}{% endblock %}
+    </div>
+    {% block body %}{% endblock %}
+</div></body>
+</html>
